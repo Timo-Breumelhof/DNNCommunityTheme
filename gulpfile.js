@@ -92,7 +92,7 @@ function getVendors(cb){
     .pipe(gulp.dest(bootsJSDest));
 
     const bootsIcons = ['node_modules/bootstrap-icons/icons/*.*'];
-    const bootsIconsDest = ['assets/boot-icons'];
+    const bootsIconsDest = ['assets/icons/bs'];
 
     gulp.src(bootsIcons)
     .pipe(gulp.dest(bootsIconsDest));
