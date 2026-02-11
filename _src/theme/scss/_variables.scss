@@ -1,6 +1,7 @@
 // BS Text
 
 $font-weight-base : 300;
+$font-weight-bold : 600;
 $google-font-import: 'https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,700;1,400&display=swap';
 $font-family-base: 'Mulish', sans-serif;
 
@@ -54,6 +55,11 @@ $light: #f2f6f7;
 $font-sm: 0.9em;
 $font-lg: 1.1em;
 $font-xl: 1.3em;
+
+// Bold font
+$font-weight-bold: 700 !default;
+// Please note there is also an overrule for bold in _texts.scss as that seems to be the only way..
+
 
 // Menu
 // Menu
