@@ -16,10 +16,10 @@
 		{{/if}}
 		<div class="oc-content clearfix">
 					
-          <div class="timeline-image">
-            {{#if Visuals.Image.cropUrl}}<img class="img-circle img-fluid" src="{{Visuals.Image.cropUrl}}" alt="{{#if Visuals.Text}}{{Visuals.Text}}{{else}}{{Texts.Title}}{{/if}}">
+          <div class="timeline-marker">
+            {{#if Visuals.Image.cropUrl}}<img class="timeline-marker-img img-fluid" src="{{Visuals.Image.cropUrl}}" alt="{{#if Visuals.Text}}{{Visuals.Text}}{{else}}{{Texts.Title}}{{/if}}">
 			{{else}}
-			<div class="circle"></div>
+			<div class="timeline-marker-text">{{Texts.SubTitle}}</div>
 			{{/if}}
           </div>
           <div class="timeline-panel">
@@ -27,8 +27,12 @@
 				{{#if Texts.Title}}
               	<h2 class="oc-title">{{Texts.Title}}</h2>
 			  	{{/if}}
-				{{#if Texts.Intro}}
-				<h3 class="oc-sub-title">{{Texts.Intro}}</h3>
+				{{#if Visuals.Image.cropUrl}}
+				{{#if Texts.SubTitle}}
+				<h3 class="oc-sub-title">{{Texts.SubTitle}}</h3>
+				{{/if}}
+				{{else}}
+				
 				{{/if}}
 				</header>
 				{{#if Texts.Text}}

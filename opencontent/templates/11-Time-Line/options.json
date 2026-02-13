@@ -7,10 +7,10 @@
           "dependencies": {},
           "type": "text"
         },
-        "Intro": {
+        "SubTitle": {
           "multilanguage": true,
           "dependencies": {},
-          "type": "textarea"
+          "type": "text"
         },
         "Text": {
           "multilanguage": true,

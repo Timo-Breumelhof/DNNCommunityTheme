@@ -1,7 +1,8 @@
+@use 'sass:color';
 @import "../scss/_mixins.scss";
 
-$medium-break: 768px;
-$large-break: 992px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
 
 $tl-main-line-color: $gray-200;
 $tl-main-line-width: 4px;
@@ -16,10 +17,20 @@ $tl-marker-width-lg: 200px;
 $tl-marker-border-width: 3px;
 $tl-marker-border-width-md: 5px;
 $tl-marker-border-width-lg: 7px;
-$tl-marker-border-color: $col1-300;
+
+$tl-marker-border-color: color.scale($col1-500, $saturation: -33%);
 $tl-marker-border-hover-color: $col1-600;
+$tl-marker-bg-color: $col1-700;
+$tl-marker-text-color: $white;
+
+$tl-marker-border-color-alt: color.scale($col1-700, $saturation: -33%, $lightness: -10%);
+$tl-marker-border-hover-color-alt: $col1-600;
+$tl-marker-bg-color-alt: $col1-700;
+$tl-marker-text-color-alt: $white;
+
 
 .oc-timeline {
+
   .timeline,
   .item {
     list-style-type: none;
@@ -29,7 +40,7 @@ $tl-marker-border-hover-color: $col1-600;
 
   .item {
     position: relative;
-    
+
     .timeline-heading {
       .oc-title {
         font-size: 1.3em;
@@ -37,45 +48,77 @@ $tl-marker-border-hover-color: $col1-600;
         font-weight: bold;
         text-transform: uppercase;
       }
+
       .oc-sub-title {
         font-size: 1.1em;
         margin: 0;
       }
+
       :last-child {
         margin-bottom: 1em;
       }
     }
 
-    .timeline-image {
-      width: $tl-marker-width;
-      float: left;
-      .img-circle {
-        border-radius: 50%;
-        border: solid $tl-marker-border-color $tl-marker-border-width;
+    .timeline-marker {
+      border-radius: 50%;
+      border-style: solid;
+
+      overflow: hidden;
+
+      // For text inside the circle
+      border-color: $tl-marker-border-color;
+      background: $tl-marker-bg-color;
+      color: $tl-marker-text-color;
+
+
+      .timeline-marker-text {
+        font-weight: bold;
+        text-align: center;
+        padding: 1rem;
+        text-transform: uppercase;
+        line-height: normal;
+      }
+
+
+
+      .timeline-marker-img {
+        object-fit: cover;
       }
     }
 
-    
-    &:hover{
-      .timeline-image {
-        .img-circle{
-          border-color:  $tl-marker-border-hover-color;
+    &:nth-child(even) {
+
+      .timeline-marker {
+        // For text inside the circle
+              border-color: $tl-marker-border-color-alt;
+        background: $tl-marker-bg-color-alt;
+        color: $tl-marker-text-color-alt;
+      }
+
+    }
+
+
+    &:hover {
+      .timeline-marker {
+        .timeline-marker-img {
+          border-color: $tl-marker-border-hover-color;
         }
       }
-     
+
     }
 
     .timeline-panel {
       float: left;
-      max-width: calc(95% - #{$tl-marker-width});
       padding: 0 0 0 5%;
     }
-    .oc-content{
+
+    .oc-content {
       position: relative;
       z-index: 1;
       margin: $tl-item-padding 0;
 
     }
+
     .line {
       position: absolute;
       left: calc($tl-marker-width / 2);
@@ -84,7 +127,8 @@ $tl-marker-border-hover-color: $col1-600;
       background: $tl-main-line-color;
       width: $tl-main-line-width;
       z-index: 0;
-      @media screen and (min-width: #{$medium-break}) {
+
+      @media screen and (min-width: #{$breakpoint-md}) {
         right: 50%;
         left: auto;
       }
@@ -96,11 +140,13 @@ $tl-marker-border-hover-color: $col1-600;
       }
     }
 
-    @include time-line-center($medium-break, $tl-item-padding-md, $tl-marker-width-md, $tl-marker-border-color, $tl-marker-border-hover-color, $tl-marker-border-width-md, $tl-main-line-width);
-    @include time-line-center($large-break, $tl-item-padding-lg, $tl-marker-width-lg, $tl-marker-border-color, $tl-marker-border-hover-color, $tl-marker-border-width-lg, $tl-main-line-width);
+    @include time-line-center(0, $tl-item-padding, $tl-marker-width, $tl-marker-border-color, $tl-marker-border-hover-color, $tl-marker-border-width, $tl-main-line-width);
+    @include time-line-center($breakpoint-md, $tl-item-padding-md, $tl-marker-width-md, $tl-marker-border-color, $tl-marker-border-hover-color, $tl-marker-border-width-md, $tl-main-line-width);
+    @include time-line-center($breakpoint-lg, $tl-item-padding-lg, $tl-marker-width-lg, $tl-marker-border-color, $tl-marker-border-hover-color, $tl-marker-border-width-lg, $tl-main-line-width);
 
     footer {
       padding-top: 1em;
+
       .fa {
         margin-right: 0.5em;
         margin-left: -0.2em;
