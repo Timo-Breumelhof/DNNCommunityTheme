@@ -1,61 +1,92 @@
-@mixin time-line-center($break-point, $item-padding, $marker-width, $marker-border-color, $tl-marker-border-hover-color, $marker-border-width, $line-width) {
-    @media screen and (min-width: #{$break-point}) {
-        
+
+@mixin _timeline-center-base($item-padding, $marker-width, $marker-border-width, $line-width) {
+
+    .oc-content {
+    padding: $item-padding 0;
+    }
+
+    .timeline-marker {
+        @include _timeline-marker-styles($marker-width, $marker-border-width);
+    }
+
+     .timeline-panel {
+            max-width: calc(95% - #{$marker-width});
+        }
+
+    &:hover {
+        .timeline-marker {}
+    }
+
+
+}
+
+@mixin _timeline-marker-styles($marker-width, $marker-border-width) {
+    float: left;
+    width: $marker-width;
+    aspect-ratio: 1/1;
+    border-width: $marker-border-width;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+          .timeline-marker-text{
+             font-size: $marker-width / 8;
+          }
+}
+
+
+
+@mixin _timeline-center-floats($marker-width, $line-width) {
+
+    .oc-content {
+        width: 50%;
+
+    }
+
+    &:nth-child(odd) {
         .oc-content {
-            width: 50%;
-            padding:  $item-padding 0;
+            left: calc(#{$marker-width} / 2 - #{$line-width} / 2);
 
-            .timeline-image {
-                width: $marker-width;
-
-                .img-circle {
-                    border: solid $marker-border-color $marker-border-width;
-                    transition: border-color 0.5s;
-                }
-            }
-
-            &:hover{
-                .timeline-image {
-                    .img-circle{
-                        border-color:  $tl-marker-border-hover-color;
-                    }
-                }
+            .timeline-marker {
+                float: right;
             }
 
             .timeline-panel {
                 max-width: calc(95% - #{$marker-width});
+                float: right;
+                padding: 0 5% 0 0;
+                text-align: right;
             }
         }
+    }
 
-        &:nth-child(odd) {
-            .oc-content {
-                left: calc(#{$marker-width} / 2 - #{$line-width} / 2);
+    &:nth-child(even) {
+        .oc-content {
+            left: calc(50% - #{$marker-width} / 2 - #{$line-width} / 2);
 
-                .timeline-image {
-                    float: right;
-                }
+            .timeline-marker {
+                float: left;
+            }
 
-                .timeline-panel {
-                    float: right;
-                    padding: 0 5% 0 0;
-                    text-align: right;
-                }
+            .timeline-panel {
+                max-width: calc(95% - #{$marker-width});
+                float: left;
+                padding: 0 0 0 5%;
             }
         }
+    }
+}
 
-        &:nth-child(even) {
-            .oc-content {
-                left: calc(50% - #{$marker-width} / 2 - #{$line-width} / 2);
+@mixin time-line-center($break-point, $item-padding, $marker-width, $marker-border-color, $tl-marker-border-hover-color, $marker-border-width, $line-width) {
+    
 
-                .timeline-image {
-                    float: left;
-                }
-
-                .timeline-panel {
-                    float: left;
-                    padding: 0 0 0 5%;
-                }
-            }
+    @if $break-point !=0 and $break-point !=null and $break-point !="" {
+        @media screen and (min-width: #{$break-point}) {
+            @include _timeline-center-base($item-padding, $marker-width, $marker-border-width, $line-width);
+            @include _timeline-center-floats($marker-width, $line-width);
         }
+    } @else {
+        // Mobile styles - circles stay on the left
+        @include _timeline-center-base($item-padding, $marker-width, $marker-border-width, $line-width);
     }
 }
