@@ -19,7 +19,7 @@
           <div class="timeline-marker">
             {{#if Visuals.Image.cropUrl}}<img class="timeline-marker-img img-fluid" src="{{Visuals.Image.cropUrl}}" alt="{{#if Visuals.Text}}{{Visuals.Text}}{{else}}{{Texts.Title}}{{/if}}">
 			{{else}}
-			<div class="timeline-marker-text">{{Texts.Intro}}</div>
+			<div class="timeline-marker-text">{{Texts.SubTitle}}</div>
 			{{/if}}
           </div>
           <div class="timeline-panel">
@@ -28,8 +28,8 @@
               	<h2 class="oc-title">{{Texts.Title}}</h2>
 			  	{{/if}}
 				{{#if Visuals.Image.cropUrl}}
-				{{#if Texts.Intro}}
-				<h3 class="oc-sub-title">{{Texts.Intro}}</h3>
+				{{#if Texts.SubTitle}}
+				<h3 class="oc-sub-title">{{Texts.SubTitle}}</h3>
 				{{/if}}
 				{{else}}
 				

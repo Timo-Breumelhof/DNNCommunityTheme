@@ -9,8 +9,8 @@
           "title": "Title",
           "type": "string"
         },
-        "Intro": {
-          "title": "Intro",
+        "SubTitle": {
+          "title": "Sub Title",
           "type": "string"
         },
         "Text": {
